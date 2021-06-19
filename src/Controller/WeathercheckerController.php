@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WeathercheckerController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/weatherchecker", name="weatherchecker")
      * @param Request $request
      * @return Response
      */
