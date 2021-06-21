@@ -1,16 +1,17 @@
 <?php
 
+namespace App\Entity;
 
-
+use App\Repository\CiudadRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ciudades
+ * Ciudad
  *
  * @ORM\Table(name="ciudades")
  * @ORM\Entity
  */
-class Ciudades
+class Ciudad
 {
     /**
      * @var int
