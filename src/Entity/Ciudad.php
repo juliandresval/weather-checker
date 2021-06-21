@@ -53,14 +53,14 @@ class Ciudad
     /**
      * @var string|null
      *
-     * @ORM\Column(name="lon", type="decimal", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="lon", type="decimal", precision=10, scale=0, nullable=true)
      */
-    private $lon = 'NULL';
+    private $lon = NULL;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="lat", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="lat", type="float", precision=10, scale=0, nullable=true)
      */
     private $lat = NULL;
 
@@ -70,6 +70,95 @@ class Ciudad
      * @ORM\Column(name="findname", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
     private $findname = 'NULL';
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getExternalId(): ?int
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId(?int $externalId): self
+    {
+        $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?string
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(?string $zipcode): self
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getLon(): ?string
+    {
+        return $this->lon;
+    }
+
+    public function setLon(?string $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(?float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getFindname(): ?string
+    {
+        return $this->findname;
+    }
+
+    public function setFindname(?string $findname): self
+    {
+        $this->findname = $findname;
+
+        return $this;
+    }
 
 
 }
