@@ -54,5 +54,58 @@ class History
      */
     private $owm;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getHum(): ?float
+    {
+        return $this->hum;
+    }
+
+    public function setHum(?float $hum): self
+    {
+        $this->hum = $hum;
+
+        return $this;
+    }
+
+    public function getTemp(): ?float
+    {
+        return $this->temp;
+    }
+
+    public function setTemp(?float $temp): self
+    {
+        $this->temp = $temp;
+
+        return $this;
+    }
+
+    public function getOwm(): ?City
+    {
+        return $this->owm;
+    }
+
+    public function setOwm(?City $owm): self
+    {
+        $this->owm = $owm;
+
+        return $this;
+    }
+
 
 }

@@ -7,7 +7,7 @@ $( document ).ready(function() {
         let data = card.data();
         $.get(
             owmUrlCurrentWeather,
-            {zip: data.zipcode, appid: owmApiKey, units: 'metric'},
+            {id: data.id, appid: owmApiKey, units: 'metric'},
             function (data,textStatus,jqXHR) {
                 card.find('#temp').append(data.main.temp);
                 card.find('#humidity').append(data.main.humidity);

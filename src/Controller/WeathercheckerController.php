@@ -35,7 +35,9 @@ class WeathercheckerController extends AbstractController
         ;
         foreach ($cities_ids as $key => $city)
         {
-            $cities[] = $repo->findOneByExternalId($city);
+            $city = $repo->findOneByExternalId($city);
+            $city->src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDfKPgMBNSQNv9A7EoHe1bsqAd3NWKEzHY&q={$city->getName()} {$city->getState()} {$city->getCountry()}&center={$city->getLat()},{$city->getLon()}&zoom=5";
+            $cities[] = $city;
         }
         return $cities;
     }
