@@ -45,11 +45,11 @@ class History
     private $temp = NULL;
 
     /**
-     * @var \City
+     * @var Ciudad
      *
-     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\ManyToOne(targetEntity="Ciudad")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="owm_id", referencedColumnName="owm_id")
+     *   @ORM\JoinColumn(name="owm_id", referencedColumnName="external_id")
      * })
      */
     private $owm;

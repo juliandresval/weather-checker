@@ -48,12 +48,22 @@ class WeathercheckerController extends AbstractController
      */
     public function checkWeather(Request $request): Response
     {
+        /*
         echo_var($request->attributes->all());
         echo_var($request->query->all());
         echo_var($request->request->all());
         echo_var($request->getRequestUri());
         echo_var($request->getQueryString());
-        exit();
+        */
+        $repo = $this->getDoctrine()
+            ->getManagerForClass(Ciudad::class)
+            ->getRepository(Ciudad::class)
+        ;
+        $city = $repo->findOneByExternalId($request->attributes->get('city'));
+        $city->src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDfKPgMBNSQNv9A7EoHe1bsqAd3NWKEzHY&q={$city->getName()} {$city->getState()} {$city->getCountry()}&center={$city->getLat()},{$city->getLon()}&zoom=5";
+        return $this->render('weatherchecker/checkweather.html.twig', [
+            'city' => $city
+        ]);
     }
 
     public function populateCiudadesTable(Request $request): Response
