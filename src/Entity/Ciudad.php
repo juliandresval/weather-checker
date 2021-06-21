@@ -60,7 +60,7 @@ class Ciudad
     /**
      * @var float|null
      *
-     * @ORM\Column(name="lat", type="float", precision=10, scale=7, nullable=true)
+     * @ORM\Column(name="lat", type="decimal", precision=10, scale=7, nullable=true)
      */
     private $lat = NULL;
 

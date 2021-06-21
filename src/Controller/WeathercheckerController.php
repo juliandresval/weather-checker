@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ciudad;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,18 +37,52 @@ class WeathercheckerController extends AbstractController
         exit();
     }
 
-    public function populateCitiesTable(Request $request): Response
+    public function populateCiudadesTable(Request $request): Response
     {
         $em = $this->getDoctrine()->getManagerForClass(City::class);
         $i = 0;
 
-        // city 209579
-        //$cities_file = realpath(__DIR__ . '/../../public/uploads/openweathermap/city.list.json');
-        //$city = json_decode(file_get_contents($cities_file), true);
+        // cities 209579
+        $cities_file = realpath(__DIR__ . '/../../public/uploads/openweathermap/city.list.json');
+        $cities = json_decode(file_get_contents($cities_file), true);
 
-        // current 22635
-        //$current_file = realpath(__DIR__ . '/../../public/uploads/openweathermap/current.city.list.json');
-        //$current = json_decode(file_get_contents($current_file), true);
+        foreach ($cities as $key => $item)
+        {
+            if (in_array($item['country'], ['US','MX','CO','ES','EN','UK','BR','VE','AR']))
+            {
+                $i++;
+                $City = new Ciudad();
+                $City->setName($item['name']);
+                $City->setExternalId(is_array($item['id']) ? array_values($item['id'])[0] : $item['id']);
+                $City->setCountry($item['country']);
+                $City->setLon(is_array($item['coord']['lon']) ? array_values($item['coord']['lon'])[0] : $item['coord']['lon']);
+                $City->setLat(is_array($item['coord']['lat']) ? array_values($item['coord']['lat'])[0] : $item['coord']['lat']);
+                $City->setState($item['state']);
+                $City->setFindname(null);
+
+                $em->persist($City);
+
+                if ($i >= 50)
+                {
+                    echo_var("i: {$i}, se prepara para hacer flush a base de datos en {$City->getName()}");
+                    $em->flush();
+                    $em->clear();
+                    $i = 0;
+                }
+            }
+            unset($cities[$key]);
+        }
+        $em->flush();
+        $em->clear();
+        exit();
+
+        return $this->render('weatherchecker/test.html.twig', ['method' => __METHOD__,]);
+    }
+
+    public function populateCitiesTable(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManagerForClass(City::class);
+        $i = 0;
 
         // history 37208
         $history_file = realpath(__DIR__ . '/../../public/uploads/openweathermap/history.city.list.json');
@@ -66,10 +101,8 @@ class WeathercheckerController extends AbstractController
                 $City->setLat(is_array($item['city']['coord']['lat']) ? array_values($item['city']['coord']['lat'])[0] : $item['city']['coord']['lat']);
                 $City->setFindname($item['city']['findname']);
 
-                if (($lon = intval($City->getLon())) >= 360 ) $City->setLon(null);
-                if (($lat = intval($City->getLat())) >= 360) $City->setLat(null);
-
                 $em->persist($City);
+
                 if ($i >= 50)
                 {
                     echo_var("i: {$i}, se prepara para hacer flush a base de datos en {$City->getName()}");
