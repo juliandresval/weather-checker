@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Ciudad;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\City;
+use App\Entity\Ciudad;
 use App\Repository\CityRepository;
+use App\Repository\CiudadRepository;
 
 class WeathercheckerController extends AbstractController
 {
@@ -20,7 +21,23 @@ class WeathercheckerController extends AbstractController
     {
         return $this->render('weatherchecker/index.html.twig', [
             'controller_name' => 'WeathercheckerController',
+            'top_cities' => $this->getTopCities()
         ]);
+    }
+
+    public function getTopCities()
+    {
+        $cities = [];
+        $cities_ids = $this->getParameter('top_cities');
+        $repo = $this->getDoctrine()
+            ->getManagerForClass(Ciudad::class)
+            ->getRepository(Ciudad::class)
+        ;
+        foreach ($cities_ids as $key => $city)
+        {
+            $cities[] = $repo->findOneByExternalId($city);
+        }
+        return $cities;
     }
 
     /**
