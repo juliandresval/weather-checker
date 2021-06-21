@@ -4,3 +4,6 @@ index:
 check_weather_city:
     path: /check-weather/{city}
     controller: App\Controller\WeathercheckerController::checkWeather
+test:
+    path: /populateCitiesTable
+    controller: App\Controller\WeathercheckerController::populateCitiesTable

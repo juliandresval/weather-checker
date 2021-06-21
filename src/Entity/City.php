@@ -36,12 +36,12 @@ class City
     private $country;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=8, nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=true)
      */
     private $lon;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=8, nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=true)
      */
     private $lat;
 

@@ -53,14 +53,14 @@ class Ciudad
     /**
      * @var string|null
      *
-     * @ORM\Column(name="lon", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="lon", type="decimal", precision=10, scale=7, nullable=true)
      */
     private $lon = NULL;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="lat", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="lat", type="float", precision=10, scale=7, nullable=true)
      */
     private $lat = NULL;
 
