@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\History;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,21 +49,16 @@ class WeathercheckerController extends AbstractController
      */
     public function checkWeather(Request $request): Response
     {
-        /*
-        echo_var($request->attributes->all());
-        echo_var($request->query->all());
-        echo_var($request->request->all());
-        echo_var($request->getRequestUri());
-        echo_var($request->getQueryString());
-        */
-        $repo = $this->getDoctrine()
-            ->getManagerForClass(Ciudad::class)
-            ->getRepository(Ciudad::class)
-        ;
+        $repo = $this->getDoctrine()->getManagerForClass(Ciudad::class)->getRepository(Ciudad::class);
         $city = $repo->findOneByExternalId($request->attributes->get('city'));
         $city->src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDfKPgMBNSQNv9A7EoHe1bsqAd3NWKEzHY&q={$city->getName()} {$city->getState()} {$city->getCountry()}&center={$city->getLat()},{$city->getLon()}&zoom=5";
+
+        $repo = $this->getDoctrine()->getManagerForClass(History::class)->getRepository(History::class);
+        $history = $repo->findByOwmid($request->attributes->get('city'));
+
         return $this->render('weatherchecker/checkweather.html.twig', [
-            'city' => $city
+            'city' => $city,
+            'history' => empty($history) ? null : $history,
         ]);
     }
 

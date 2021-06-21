@@ -45,14 +45,11 @@ class History
     private $temp = NULL;
 
     /**
-     * @var Ciudad
+     * @var int|null
      *
-     * @ORM\ManyToOne(targetEntity="Ciudad")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="owm_id", referencedColumnName="external_id")
-     * })
+     * @ORM\Column(name="owm_id", type="integer", nullable=true)
      */
-    private $owm;
+    private $owmid;
 
     public function getId(): ?int
     {
@@ -95,14 +92,14 @@ class History
         return $this;
     }
 
-    public function getOwm(): ?City
+    public function getOwmid(): ?int
     {
-        return $this->owm;
+        return $this->owmid;
     }
 
-    public function setOwm(?City $owm): self
+    public function setOwmId($owmid): self
     {
-        $this->owm = $owm;
+        $this->owmid = $owmid;
 
         return $this;
     }
