@@ -71,6 +71,11 @@ class Ciudad
      */
     private $findname = NULL;
 
+    /**
+     * @ORM\Column(name="state", type="string", length=4, nullable=true)
+     */
+    private $state = NULL;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -160,5 +165,15 @@ class Ciudad
         return $this;
     }
 
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
 
+    public function setState(?string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
 }

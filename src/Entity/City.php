@@ -51,7 +51,7 @@ class City
     private $findname;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=4, nullable=true)
      */
     private $state;
 
