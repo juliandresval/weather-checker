@@ -25,7 +25,7 @@ class Ciudad
     /**
      * @var int|null
      *
-     * @ORM\Column(name="external_id", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="external_id", type="integer", nullable=true)
      */
     private $externalId = NULL;
 
@@ -39,9 +39,9 @@ class Ciudad
     /**
      * @var string|null
      *
-     * @ORM\Column(name="zipcode", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="zipcode", type="string", length=10, nullable=true)
      */
-    private $zipcode = 'NULL';
+    private $zipcode = NULL;
 
     /**
      * @var string
@@ -67,9 +67,9 @@ class Ciudad
     /**
      * @var string|null
      *
-     * @ORM\Column(name="findname", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="findname", type="string", length=100, nullable=true)
      */
-    private $findname = 'NULL';
+    private $findname = NULL;
 
     public function getId(): ?int
     {
