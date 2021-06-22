@@ -6,6 +6,9 @@ use App\Repository\HistoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * History
+ *
+ * @ORM\Table(name="history", indexes={@ORM\Index(name="history_cities_id_fk", columns={"city_id"})})
  * @ORM\Entity(repositoryClass=HistoryRepository::class)
  */
 class History

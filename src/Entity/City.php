@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * City
+ *
+ * @ORM\Table(name="cities")
  * @ORM\Entity(repositoryClass=CityRepository::class)
  */
 class City
