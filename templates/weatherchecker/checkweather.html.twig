@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ city.name }} Weather{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex flex-row justify-content-center align-items-center" style="height: 100px">
+                <h2>{{ city.name }}, {{ city.country }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Current Weather</h3>
+            <ul class="card-text weather-card" id="{{city.owmId}}" data-id="{{ city.owmId }}" data-lon="{{ city.lon }}" data-lat="{{ city.lat }}">
+                <li id="temp">Temp.: </li>
+                <li id="humidity">Humidity: </li>
+            </ul>
+            <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipiscing elit laoreet, vulputate sociis commodo imperdiet senectus elementum bibendum mus, molestie ad sagittis a odio litora ante. Eleifend vitae mattis commodo pretium imperdiet parturient rhoncus curabitur donec iaculis leo, quam mollis nisl nascetur malesuada justo nostra nec magnis.</p>
+            <a class="btn btn-info" href="/">Go to top cities</a>
+        </div>
+        <div class="col-sm-8">
+            <iframe id="{{ city.owmId }}" width="100%" height="400" frameborder="0" style="border:0; width: 100%" src="{{ city.src }}" ></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <hr>
+            <h3>Weather History</h3>
+            {% if history is not empty %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Date</th>
+                            <th>Temp.</th>
+                            <th>Humidity</th>
+                        </tr>
+                        {% for row in history %}
+                            <tr>
+                                <td>{{ row.date.format('Y-m-d') }}</td>
+                                <td>{{ row.temp }}ºC</td>
+                                <td>{{ row.hum }}%</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% else %}
+                <p>There is not histoy</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
