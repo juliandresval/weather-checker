@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WeathercheckerController!{% endblock %}
+{% block title %}Weather Checker{% endblock %}
 
 {% block body %}
 <div class="row">
@@ -17,7 +17,7 @@
                 <h5 class="card-header">{{ city.name }}, {{ city.country }}</h5>
                 <div class="card-body">
                     <iframe id="{{ city.owmId }}" width="100%" height="300" frameborder="0" style="border:0; width: 100%" src="{{ city.src }}" ></iframe>
-                    <p class="card-text weather-card" id="{{city.owmId}}" data-id="{{ city.owmId }}" data-lon="{{ city.lon }}" data-lat="{{ city.lat }}">Temp.: <span id="temp"></span>ºC / Humidity: <span id="humidity"></span>%</p>
+                    <p class="card-text weather-card" id="{{city.owmId}}" data-id="{{ city.owmId }}" data-lon="{{ city.lon }}" data-lat="{{ city.lat }}">Temp.: <span id="temp"></span> / Humidity: <span id="humidity"></span></p>
                     <a href="/check-weather/{{ city.owmId }}" class="btn btn-primary">See more...</a>
                 </div>
             </div><br>

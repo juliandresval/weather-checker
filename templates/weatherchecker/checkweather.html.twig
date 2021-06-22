@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WeathercheckerController!{% endblock %}
+{% block title %} {{ city.name }} Weather{% endblock %}
 
 {% block body %}
     <div class="row">
@@ -12,6 +12,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4">
+            <h3>Current Weather</h3>
             <ul class="card-text weather-card" id="{{city.owmId}}" data-id="{{ city.owmId }}" data-lon="{{ city.lon }}" data-lat="{{ city.lat }}">
                 <li id="temp">Temp.: </li>
                 <li id="humidity">Humidity: </li>
@@ -38,8 +39,8 @@
                         {% for row in history %}
                             <tr>
                                 <td>{{ row.date.format('Y-m-d') }}</td>
-                                <td>{{ row.temp }}</td>
-                                <td>{{ row.hum }}</td>
+                                <td>{{ row.temp }}ºC</td>
+                                <td>{{ row.hum }}%</td>
                             </tr>
                         {% endfor %}
                     </table>

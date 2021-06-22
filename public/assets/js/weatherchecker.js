@@ -9,8 +9,8 @@ $( document ).ready(function() {
             owmUrlCurrentWeather,
             {id: data.id, appid: owmApiKey, units: 'metric'},
             function (data,textStatus,jqXHR) {
-                card.find('#temp').append(data.main.temp);
-                card.find('#humidity').append(data.main.humidity);
+                card.find('#temp').append(data.main.temp + 'ºC');
+                card.find('#humidity').append(data.main.humidity + '%');
             }
         );
     });
