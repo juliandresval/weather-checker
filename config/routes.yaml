@@ -4,9 +4,3 @@ index:
 check_weather_city:
     path: /check-weather/{city}
     controller: App\Controller\WeathercheckerController::checkWeather
-populate_cities_table:
-    path: /populate-cities-table
-    controller: App\Controller\WeathercheckerController::populateCitiesTable
-populate_ciudades_table:
-    path: /populate-ciudades-table
-    controller: App\Controller\WeathercheckerController::populateCiudadesTable
