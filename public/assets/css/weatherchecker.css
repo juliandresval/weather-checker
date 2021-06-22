@@ -1,0 +1,21 @@
+.main-header {
+    background-color: #133845;
+    color: #a9e2f0;
+    height: 120px;
+}
+.main-bg-color {
+    background-color: #133845;
+    color: #a9e2f0;
+}
+.main-title {
+    font-size: 3em !important;
+    font-weight: bolder !important;
+}
+.title {
+    font-size: 2.25em !important;
+    font-weight: bolder !important;
+}
+.subtitle {
+    font-size: 1.5em !important;
+    font-weight: bolder !important;
+}
